@@ -69,3 +69,17 @@ $title-color: #000000 !default; // TOP: big title
 //$text-color: #333 !default;
 //$text-color-light: #777 !default;
 $subtitle-color: darken($header-bg, 58); // TOP: subtitle
+
+// ////////////////////////////////////////
+// change the nav bar
+//
+$nav-bg: lighten($header-bg,40) !default;
+$nav-bg-front: #fff;
+$nav-bg-back: #fff;
+$nav-color: darken($nav-bg, 70) !default;
+$nav-color-hover: lighten($nav-color, 25) !default;
+//$nav-border: darken($nav-bg, 50) !default;
+//$nav-border-top: darken($nav-bg, 33) !default;
+$nav-border-bottom: $header-bg !default;
+//$nav-border-left: darken($nav-bg, 11) !default;
+//$nav-border-right: lighten($nav-bg, 7) !default;
