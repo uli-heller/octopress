@@ -64,3 +64,8 @@ $page-bg: #ffffff !default;
 // change the header colors
 //
 $header-bg: #ffd000;
+
+$title-color: #000000 !default; // TOP: big title
+//$text-color: #333 !default;
+//$text-color-light: #777 !default;
+$subtitle-color: darken($header-bg, 58); // TOP: subtitle
