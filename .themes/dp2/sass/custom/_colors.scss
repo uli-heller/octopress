@@ -41,3 +41,21 @@
 //$pre-bg: $base03;
 //$pre-border: darken($base02, 5);
 //$pre-color: $base1;
+
+// http://aijazansari.com/2012/08/27/how-to-customize-octopress-theme/
+// ////////////////////////////////////////
+// change the background colors
+//
+html {
+  background: #fff !important;
+}
+body {
+  > div {
+    background: #fff !important;
+    > div {
+      background: #fff !important;
+      }
+  }
+}
+$main-bg: #ffffff !default;
+$page-bg: #ffffff !default;
