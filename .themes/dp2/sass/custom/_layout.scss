@@ -19,3 +19,15 @@ $indented-lists: true;
 //$sidebar-pad-medium: 15px;
 //$sidebar-pad-wide: 20px;
 //$sidebar-width-wide: 300px;
+
+#logo {
+  width: 200px;
+  float: left;
+}
+
+#title {
+//  margin-left: 200px;
+  margin-left: auto;
+  margin-right: 0px;
+  float: right;
+}
