@@ -9,7 +9,7 @@ footer: true
 Die Entwicklung der daemons point GmbH
 ======================================
 
-|               |                                                |
+|Datum          |Beschreibung                                    |
 |:------------- |:-----------------------------------------------|
 |4. Nov 1994|   Gründung durch Uli Heller und Steffen Walter
 |seit 1994|     Entwicklungen von CallCenter Applikation als Partner von IBM
