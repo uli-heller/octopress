@@ -1,14 +1,15 @@
 ---
 layout: post
-title: "Installation"
+title: "Installation von Github"
 date: 2013-04-13 07:07
+updated: 2013-04-16 10:00
 comments: false
 author: Uli Heller
 categories: 
 ---
 
-Installation
-============
+Installation von Github
+=======================
 
 In diesem Artikel beschreibe ich, wie man ein Linux-System so aufsetzt,
 dass man damit Änderungen an unseren Webseiten vornehmen kann.
