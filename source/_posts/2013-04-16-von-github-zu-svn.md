@@ -119,11 +119,22 @@ Dieser Commit muß nun aufgesplittet werden:
 * 0e15471 mit "edit" markieren, dann abspeichern und Editor beenden
 * Commit-Kommentar speichern mit `git log -1 --pretty=%B >commit.txt`
 * `git reset HEAD^`
+* `git rm -r source`
 * `git commit -m "Deleted source" source`
+* `git rm -r sass`
 * `git commit -m "Deleted sass" sass`
 * `git commit -F commit.txt .`
 * `rm commit.txt`
 * `git rebase --continue`
+* Bei der Fehlermeldung bzgl. 'source': `rm -rf source`
+  und nochmal `git rebase --continue`
+* Bei der Fehlermeldung bzgl. "regex":
+** `git checkout --theirs .`
+** `git add .`
+** `git rebase --continue`
+* Bei der Fehlermeldung bzgl. "allow-empty":
+** `git commit --allow-empty`
+** `git rebase --continue`
 
 ... und danach die Übertragung Richtung Subversion neu starten mit
 
