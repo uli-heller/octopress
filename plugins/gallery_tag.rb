@@ -2,6 +2,7 @@ BASE_DIR = 'source/images/galleries'
 
 module ImageList
   def image_list( name )
+   unless name == nil
     list = Array.new
     dir = Dir.new( File.join(BASE_DIR, name) )
     dir.each do | d |
@@ -11,6 +12,7 @@ module ImageList
       end
     end
     list.sort.join( "\n" )
+   end
   end
 end
 
