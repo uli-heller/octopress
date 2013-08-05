@@ -1,10 +1,10 @@
 // http://samwize.com/2012/09/24/octopress-table-stylesheet/
 
-* + table {
-  border-style:solid;
-  border-width:1px;
-  border-color:#000000;
-}
+//* + table {
+//  border-style:solid;
+//  border-width:1px;
+//  border-color:#000000;
+//}
 
 * + table th, * + table td {
   border-style:solid;

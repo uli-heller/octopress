@@ -1,0 +1,116 @@
+# Linux
+
+## SSH
+
+* http://www.tecmint.com/use-pam_tally2-to-lock-and-unlock-ssh-failed-login-attempts/
+
+## FIREWALL
+
+* FERM - http://blog.tincho.org/posts/Setting_up_my_server:_netfilter/
+
+## SELINUX
+
+* http://blog.bodhizazen.net/linux/selinux-and-confined-users/
+
+## SSD
+
+* http://people.skolelinux.org/pere/blog/How_to_fix_a_Thinkpad_X230_with_a_broken_180_GB_SSD_disk.html
+* http://anonscm.debian.org/gitweb/?p=collab-maint/ssd-setup.git
+
+## Container, LXC, ...
+
+* https://github.com/arachsys/containers
+
+# Sonstiges
+
+NginX - Apache
+--------------
+* http://unhandledexpression.com/2013/01/25/5-easy-tips-to-accelerate-ssl/
+
+Git
+---
+* http://rambaudpierre.fr/blog/linux/2013-01-26-git-tricks-and-tips
+* http://pcottle.github.com/learnGitBranching/
+  https://github.com/pcottle/learnGitBranching/
+* http://www.darianshimy.com/blog/2013/04/04/everything-i-forget-about-git/
+* http://code.joejag.com/2013/everyday-git-aliases/
+* Deploy via GIT
+  * https://coderwall.com/p/xczkaq?&p=1&q=
+
+SublimeText3
+------------
+* http://www.sublimetext.com/3
+* http://www.sublimetext.com/blog/articles/sublime-text-3-beta-3019
+
+JMX
+---
+http://www.javacodegeeks.com/2012/07/jmx-and-spring-part-1.html
+
+Chardin
+-------
+https://github.com/heelhook/chardin.js
+http://heelhook.github.com/chardin.js/
+
+Octopress
+---------
+* http://webdesign.tutsplus.com/tutorials/applications/getting-started-with-octopress/
+* Markdown
+    * https://github.com/satyagraha/gfm_viewer
+      Uninteressant, benötigt Verbindung zu Github
+    * https://github.com/winterstein/Eclipse-Markdown-Editor-Plugin/commits/master
+      und http://www.winterwell.com/software/markdown-editor.phphttp://www.winterwell.com/software/markdown-editor.php
+    * http://dillinger.io/# ... online markdown editor, nodejs, mit
+    * https://github.com/adam-p/markdown-here
+      ... Integration in Chrome, Firefox, Thunderbird
+    * Markdown-Editor - CuteMarkEd
+      http://cloose.github.io/CuteMarkEd/
+* Improve octopress
+    * http://www.narga.net/improve-octopress-advanced-tweaks-tips/
+* AscciDoctor und MarkItUp
+    * http://architects.dzone.com/articles/asciidoc-editor-markitup
+
+SH
+--
+* http://www.etalabs.net/sh_tricks.html
+  * quote () { printf %s\\n "$1" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/'/" ; }
+  * save () {
+      for i do printf %s\\n "$i" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/' \\\\/" ; done
+      echo " "
+    }
+  * myarray=$(save "$@")
+    set -- foo bar baz boo
+    eval "set -- $myarray"
+* http://www.seanius.net/blog/2009/03/saving-and-restoring-positional-params/
+* https://github.com/makefu/array
+
+WEBAPPS
+-------
+* http://www.skillshared.blogspot.de/2013/06/online-server-console-viewer-with-ajax.html
+  * https://sites.google.com/site/semboost/console-viewer.war
+  * https://sites.google.com/site/semboost/console-viewer.zip
+* Timeline
+  * http://codepen.io/christian-fei/pen/BJily
+  * http://christian-fei.com/tutorials/simple-vertical-timeline-with-css/#9
+  * https://github.com/christian-fei/christian-fei.github.com
+* Embedded Jetty War mit Gradle
+  * http://fernandorubbo.blogspot.com.br/2013/06/embedded-war-using-gradle.html
+  * https://docs.google.com/file/d/0B70OhasM5Q2rbXFUNER4Mk1vWXc/edit?usp=sharing
+* share.js
+  * http://sharejs.org/
+* undertow (schneller Web-Server für Unit-Tests)
+  * http://undertow.io/blog/2013/07/09/Undertow-Beta1-Released.html
+* Sequenz-Diagramme in JavaScript (hübsch)
+  * http://bramp.github.io/js-sequence-diagrams/
+
+CHROME
+------
+* http://dev.hubspot.com/blog/bulletproof-demos
+  chrome --args --record-mode
+  chrome --args --playback-mode
+
+WINDOWS
+-------
+* Kitty (=Weiterentwicklung von Putty)
+  http://www.9bis.net/kitty/?page=Welcome&zone=en
+* http://www.mremoteng.org/
+* http://www.ericvb.com/archives/the-best-tabbed-ssh-solution-in-windows-7

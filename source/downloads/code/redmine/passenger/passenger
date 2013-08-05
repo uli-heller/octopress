@@ -1,0 +1,27 @@
+#NameVirtualHost *:80
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+
+        PassengerDefaultUser www-data
+        RailsEnv production
+#        RailsBaseURI /redmine
+
+        DocumentRoot /srv/redmine-1.2.1/public/
+#        DocumentRoot /var/www/
+        Alias /redmine "/srv/redmine-1.2.1/public/"
+        <Directory "/srv/redmine-1.2.1/public/">   
+         Options FollowSymLinks -MultiViews  
+          AllowOverride none  
+          Order allow,deny
+          allow from all
+        </Directory>
+
+        ErrorLog /var/log/apache2/error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn  
+
+        CustomLog /var/log/apache2/access.log combined
+        ServerSignature On
+</VirtualHost>

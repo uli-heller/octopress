@@ -2,12 +2,11 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://daemons-point.com
-# title: daemons point
-# subtitle: Gesellschaft für Datenverarbeitung mbH<br/><br/>Zahn-Nopper-Str. 1-3<br/>70435 Stuttgart
-title: Intelligente Lösungen<br/>in neuer Dimension
-subtitle:
-author: daemons point GmbH
+url: http://uli-heller.github.com
+title: Was ich so treibe...
+subtitle: Uli's IT-Blog - Konzeption, Entwicklung, Betrieb
+author: Uli Heller
+
 simple_search: http://google.com/search
 description:
 
@@ -47,7 +46,7 @@ pygments: false # default python pygments have been replaced by pygments.rb
 paginate: 10          # Posts per page on the blog index
 pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
-excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
+excerpt_link: "Vollständiger Artikel &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 
 titlecase: false       # Converts page and post titles to titlecase
 
@@ -93,7 +92,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: ulispersonalitblog
 disqus_show_comment_count: false
 
 # Google Analytics
@@ -106,6 +105,12 @@ mini_magick:
     test_thumbnail:
       source: images/galleries/test
       destination: images/galleries/test/thumbs
+      commands:
+        - thumbnail: "64x48^"
+        - crop: "64x48-0x0"
+    centos_thumbnail:
+      source: images/galleries/centos
+      destination: images/galleries/centos/thumbs
       commands:
         - thumbnail: "64x48^"
         - crop: "64x48-0x0"

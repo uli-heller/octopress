@@ -1,0 +1,153 @@
+diff -Nur dovecot-2.0.19/debian/changelog dovecot-2.2.rc2/debian/changelog
+--- dovecot-2.0.19/debian/changelog	2012-06-28 23:38:39.000000000 +0200
++++ dovecot-2.2.rc2/debian/changelog	2013-03-11 09:23:35.000000000 +0100
+@@ -1,3 +1,9 @@
++dovecot (1:2.2.rc2-0dp01~precise1) precise; urgency=low
++
++  * New upstream release
++
++ -- Uli Heller <uli.heller@daemons-point.com>  Mon, 11 Mar 2013 09:09:19 +0100
++
+ dovecot (1:2.0.19-0ubuntu2) precise-proposed; urgency=low
+ 
+   * Fix panic and core dump, cherry picked from upstream Mercurial.
+diff -Nur dovecot-2.0.19/debian/patches/dovecot-drac.patch dovecot-2.2.rc2/debian/patches/dovecot-drac.patch
+--- dovecot-2.0.19/debian/patches/dovecot-drac.patch	2012-06-28 23:33:07.000000000 +0200
++++ dovecot-2.2.rc2/debian/patches/dovecot-drac.patch	2013-03-11 11:20:48.000000000 +0100
+@@ -42,7 +42,7 @@
+ + *   http://dovecot.org/patches/1.1/drac.c
+ + */
+ +#include "lib.h"
+-+#include "network.h"
+++#include "net.h"
+ +#include "ioloop.h"
+ +#include "mail-user.h"
+ +#include "mail-storage-private.h"
+diff -Nur dovecot-2.0.19/debian/patches/fix-mail_plugin_dir-default.patch dovecot-2.2.rc2/debian/patches/fix-mail_plugin_dir-default.patch
+--- dovecot-2.0.19/debian/patches/fix-mail_plugin_dir-default.patch	2012-06-28 23:33:07.000000000 +0200
++++ dovecot-2.2.rc2/debian/patches/fix-mail_plugin_dir-default.patch	2013-03-11 10:55:09.000000000 +0100
+@@ -8,11 +8,11 @@
+  doc/example-config/conf.d/10-mail.conf |    2 +-
+  1 files changed, 1 insertions(+), 1 deletions(-)
+ 
+-diff --git a/doc/example-config/conf.d/10-mail.conf b/doc/example-config/conf.d/10-mail.conf
+-index fe5cc31..4b918ed 100644
+---- a/doc/example-config/conf.d/10-mail.conf
+-+++ b/doc/example-config/conf.d/10-mail.conf
+-@@ -200,7 +200,7 @@
++Index: dovecot-2.2.rc2/doc/example-config/conf.d/10-mail.conf
++===================================================================
++--- dovecot-2.2.rc2.orig/doc/example-config/conf.d/10-mail.conf	2013-02-22 12:20:04.000000000 +0100
+++++ dovecot-2.2.rc2/doc/example-config/conf.d/10-mail.conf	2013-03-11 10:55:07.635357407 +0100
++@@ -201,7 +201,7 @@
+  #auth_socket_path = /var/run/dovecot/auth-userdb
+  
+  # Directory where to look up mail plugins.
+@@ -21,4 +21,3 @@
+  
+  # Space separated list of plugins to load for all services. Plugins specific to
+  # IMAP, LDA, etc. are added to this list in their own .conf files.
+--- 
+diff -Nur dovecot-2.0.19/debian/patches/pigeonhole.patch dovecot-2.2.rc2/debian/patches/pigeonhole.patch
+--- dovecot-2.0.19/debian/patches/pigeonhole.patch	2012-06-28 23:33:07.000000000 +0200
++++ dovecot-2.2.rc2/debian/patches/pigeonhole.patch	2013-03-11 10:49:09.000000000 +0100
+{not included}
+diff -Nur dovecot-2.0.19/debian/patches/series dovecot-2.2.rc2/debian/patches/series
+--- dovecot-2.0.19/debian/patches/series	2012-06-28 23:34:08.000000000 +0200
++++ dovecot-2.2.rc2/debian/patches/series	2013-03-11 09:23:47.000000000 +0100
+@@ -2,5 +2,5 @@
+ dovecot-drac.patch
+ split-protocols.patch
+ fix-mail_plugin_dir-default.patch
+-fix-racey-restarts.patch
+-bug-1018579.patch
++#fix-racey-restarts.patch
++#bug-1018579.patch
+diff -Nur dovecot-2.0.19/debian/patches/split-protocols.patch dovecot-2.2.rc2/debian/patches/split-protocols.patch
+--- dovecot-2.0.19/debian/patches/split-protocols.patch	2012-06-28 23:33:07.000000000 +0200
++++ dovecot-2.2.rc2/debian/patches/split-protocols.patch	2013-03-11 10:55:06.000000000 +0100
+@@ -12,11 +12,11 @@
+  src/master/master-settings.c                       |    2 +-
+  4 files changed, 4 insertions(+), 7 deletions(-)
+ 
+-Index: dovecot/doc/example-config/dovecot.conf
++Index: dovecot-2.2.rc2/doc/example-config/dovecot.conf
+ ===================================================================
+---- dovecot.orig/doc/example-config/dovecot.conf	2012-03-07 08:19:52.000000000 -0500
+-+++ dovecot/doc/example-config/dovecot.conf	2012-03-07 10:37:13.000000000 -0500
+-@@ -16,8 +16,8 @@
++--- dovecot-2.2.rc2.orig/doc/example-config/dovecot.conf	2013-01-04 20:38:41.000000000 +0100
+++++ dovecot-2.2.rc2/doc/example-config/dovecot.conf	2013-03-11 10:54:59.779357916 +0100
++@@ -20,8 +20,8 @@
+  # options. The paths listed here are for configure --prefix=/usr
+  # --sysconfdir=/etc --localstatedir=/var
+  
+@@ -27,10 +27,10 @@
+  
+  # A comma separated list of IPs or hosts where to listen in for connections. 
+  # "*" listens in all IPv4 interfaces, "::" listens in all IPv6 interfaces.
+-Index: dovecot/pigeonhole/doc/example-config/conf.d/20-managesieve.conf
++Index: dovecot-2.2.rc2/pigeonhole/doc/example-config/conf.d/20-managesieve.conf
+ ===================================================================
+---- dovecot.orig/pigeonhole/doc/example-config/conf.d/20-managesieve.conf	2012-03-07 10:37:11.000000000 -0500
+-+++ dovecot/pigeonhole/doc/example-config/conf.d/20-managesieve.conf	2012-03-07 10:37:13.000000000 -0500
++--- dovecot-2.2.rc2.orig/pigeonhole/doc/example-config/conf.d/20-managesieve.conf	2013-03-11 10:54:57.079337564 +0100
+++++ dovecot-2.2.rc2/pigeonhole/doc/example-config/conf.d/20-managesieve.conf	2013-03-11 10:54:59.779357916 +0100
+ @@ -2,9 +2,6 @@
+  ## ManageSieve specific settings
+  ##
+@@ -40,12 +40,12 @@
+ -
+  # Service definitions
+  
+- service managesieve-login {
+-Index: dovecot/src/config/all-settings.c
++ #service managesieve-login {
++Index: dovecot-2.2.rc2/src/config/all-settings.c
+ ===================================================================
+---- dovecot.orig/src/config/all-settings.c	2012-03-07 08:19:52.000000000 -0500
+-+++ dovecot/src/config/all-settings.c	2012-03-07 10:37:14.000000000 -0500
+-@@ -1764,7 +1764,7 @@
++--- dovecot-2.2.rc2.orig/src/config/all-settings.c	2013-02-25 14:33:27.000000000 +0100
+++++ dovecot-2.2.rc2/src/config/all-settings.c	2013-03-11 10:54:59.783357912 +0100
++@@ -2433,7 +2433,7 @@
+  	.libexec_dir = PKG_LIBEXECDIR,
+  	.instance_name = PACKAGE,
+  	.import_environment = "TZ" ENV_SYSTEMD ENV_GDB,
+@@ -54,11 +54,11 @@
+  	.listen = "*, ::",
+  	.ssl = "yes:no:required",
+  	.default_internal_user = "dovecot",
+-Index: dovecot/src/master/master-settings.c
++Index: dovecot-2.2.rc2/src/master/master-settings.c
+ ===================================================================
+---- dovecot.orig/src/master/master-settings.c	2012-03-07 08:19:52.000000000 -0500
+-+++ dovecot/src/master/master-settings.c	2012-03-07 10:37:14.000000000 -0500
+-@@ -213,7 +213,7 @@
++--- dovecot-2.2.rc2.orig/src/master/master-settings.c	2013-02-18 05:47:18.000000000 +0100
+++++ dovecot-2.2.rc2/src/master/master-settings.c	2013-03-11 10:54:59.783357912 +0100
++@@ -216,7 +216,7 @@
+  	.libexec_dir = PKG_LIBEXECDIR,
+  	.instance_name = PACKAGE,
+  	.import_environment = "TZ" ENV_SYSTEMD ENV_GDB,
+diff -Nur dovecot-2.0.19/debian/rules dovecot-2.2.rc2/debian/rules
+--- dovecot-2.0.19/debian/rules	2012-06-28 23:33:07.000000000 +0200
++++ dovecot-2.2.rc2/debian/rules	2013-03-11 11:20:33.000000000 +0100
+@@ -47,7 +47,7 @@
+ 	            --disable-static
+ 	$(MAKE) dovecot-config
+ 	# Pigeonhole
+-	(cd $(PIGEONHOLE_DIR)/ && \
++	(cd $(PIGEONHOLE_DIR)/ && sh ./autogen.sh \
+ 	    touch stamp.h.in && \
+ 	    $(shell dpkg-buildflags --export=configure) sh configure \
+ 	    --with-dovecot=../ \
+@@ -105,7 +105,7 @@
+ 	install -m644 debian/dovecot-core.ufw.profile debian/dovecot-core/etc/ufw/applications.d/dovecot-core
+ 	install -D -m 0755 -o root -g root $(CURDIR)/debian/maildirmake.dovecot $(CURDIR)/debian/dovecot-core/usr/bin/maildirmake.dovecot
+ 	mv $(CURDIR)/debian/dovecot-core/usr/share/doc/dovecot $(CURDIR)/debian/dovecot-core/usr/share/doc/dovecot-core
+-	cp $(PIGEONHOLE_DIR)/ChangeLog $(CURDIR)/debian/dovecot-core/usr/share/doc/dovecot-core/pigeonhole.ChangeLog
++	#cp $(PIGEONHOLE_DIR)/ChangeLog $(CURDIR)/debian/dovecot-core/usr/share/doc/dovecot-core/pigeonhole.ChangeLog
+ 	cp $(PIGEONHOLE_DIR)/README $(CURDIR)/debian/dovecot-core/usr/share/doc/dovecot-core/pigeonhole.README
+ 	cp $(PIGEONHOLE_DIR)/NEWS $(CURDIR)/debian/dovecot-core/usr/share/doc/dovecot-core/pigeonhole.NEWS
+ 
