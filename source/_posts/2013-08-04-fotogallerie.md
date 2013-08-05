@@ -7,7 +7,6 @@ comments: false
 author: Uli Heller
 toc: true
 categories: 
-- Octopress
 ---
 
 Test einer Fotogallerie - Bilder aus Südtirol und Tripsdrill.
