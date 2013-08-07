@@ -4,6 +4,7 @@ author: Uli Heller
 published: true
 title: "Octopress und Git ohne Umbenennung"
 date: 2013-08-05 08:00
+updated: 2013-08-07 10:00
 comments: true
 categories:
 - Linux
@@ -40,7 +41,10 @@ Am besten erstmal einfach leer anlegen mit einem Branch namens "master".
 
 ### _deploy
 
-{% codeblock Verzeichnis _deploy lang:sh %}
+Das Verzeichnis "_deploy" wird angelegt durch `git clone ...` und
+anschließendes Umbenennen mit `mv ...`.
+
+{% codeblock Anlegen des Verzeichnisses _deploy lang:sh %}
 $ cd uli-octopress
 
 uli-octopress$ git clone git@github.com:uli-heller/uli-heller.github.com.git
