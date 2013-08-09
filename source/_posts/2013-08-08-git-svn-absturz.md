@@ -177,7 +177,7 @@ munmap(0x7f0402cef000, 8192)            = 0
 
 ### Neueste Version von serf-1.2.1
 
-{% codeblock lang:sh %}
+{% codeblock Patch erzeugen lang:sh %}
 $ git svn clone --stdlayout http://serf.googlecode.com/svn
 ...
 r2111 = 6e0d690806e4796d2d698e5fd6a33b91832b9fd3 (refs/remotes/trunk)
@@ -188,6 +188,13 @@ Checked out HEAD:
   http://serf.googlecode.com/svn/trunk r2112
 $ mv svn serf
 $ cd serf
-$ git diff remotes/tags/1.2.1 remotes/1.2.x >serf-1.2.1-r2112.diff
-...
+$ git diff remotes/tags/1.2.1 remotes/1.2.x >serf-1.2.1-r2112.patch
 {% endcodeblock %}
+
+Den dabei erzeugten Patch habe ich in die Patch-Serie von
+SERF aufgenommen und ein neues SERF-Paket erzeugt und dieses
+dann installiert mit
+
+* `sudo dpkg -i libserf1_1.2.1-0dp04~precise1_amd64.deb` 
+
+Ein Nachtest ergibt: Keine Besserung.
