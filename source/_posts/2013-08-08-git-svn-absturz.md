@@ -173,6 +173,36 @@ munmap(0x7f0402cef000, 8192)            = 0
 +++ killed by SIGSEGV (core dumped) +++
 {% endcodeblock %}
 
+### Devel:Trace
+
+#### Perl-Modul Devel::Trace installieren
+
+`sudo apt-get install libdevel-trace-perl`
+
+#### Test
+
+{% codeblock Reproduktion mit 'Devel::Trace' und 'git-svn' lang:sh %}
+date >>git-svn-absturz.txt
+git commit -m "Aktualisiert: git-svn-absturz.txt" .
+perl -d::Trace -f /usr/lib/git-core/git-svn dcommit
+{% endcodeblock %}
+
+Dabei wird diese Ausgabe geliefert:
+
+{% codeblock Ausgabe mit 'Devel::Trace' lang:sh %}
+...
+>> /usr/share/perl5/Git/SVN.pm:1659: 	unmemoize_svn_mergeinfo_functions();
+>> /usr/share/perl5/Git/SVN.pm:1626: 		return if not $memoized;
+>> /usr/share/perl5/Git/SVN.pm:85: 	unlink keys %LOCKFILES if %LOCKFILES;
+>> /usr/share/perl5/Git/SVN.pm:86: 	unlink keys %INDEX_FILES if %INDEX_FILES;
+>> /usr/lib/perl5/SVN/Core.pm:390:     $globaldestroy = 1;
+>> /usr/lib/perl5/SVN/Core.pm:58:     SVN::_Core::apr_terminate();
+Speicherzugriffsfehler (Speicherabzug geschrieben)
+{% endcodeblock %}
+
+Richtig "weiter" kommen wir damit nicht - "apr_terminate()" ist
+eine C-Funktion, die per SWIG in Perl eingebunden ist.
+
 ## Korrekturversuche
 
 ### Neueste Version von serf-1.2.1
