@@ -228,3 +228,36 @@ dann installiert mit
 * `sudo dpkg -i libserf1_1.2.1-0dp04~precise1_amd64.deb` 
 
 Ein Nachtest ergibt: Keine Besserung.
+
+### Neueste Version von apr-1.4.8
+
+Der übliche Ablauf mittels
+
+    * `uupdate -u ../apr-1.4.8.tar.gz`
+    * `cd ../apr-1.4.8`
+    * `dpkg-buildpackage`
+
+funktioniert nicht - es werden viele fehlende Funktionen angemeckert von 
+`dh_makeshlibs`/`dpkg-gensymbols`:
+
+{% codeblock Fehlende Funktionen %}
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA384_Data@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA384_End@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA384_Final@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA384_Init@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA384_Update@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA512_Data@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA512_End@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA512_Final@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA512_Init@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA512_Last@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA512_Transform@Base 1.2.7
++#MISSING: 1.4.8-0dp01~precise1# apr__SHA512_Update@Base 1.2.7
+{% endcodeblock %}
+
+Nach Anpassung von .../debian/symbols.common funktioniert's. Klar, die neue
+Version ist nicht so richtig kompatibel zur alten Version. Muß ich im
+Hinterkopf behalten.
+
+Ein Nachtest ergibt: Keine Besserung, `git-svn` stürzt noch immer ab.
+Also: Wieder die alte Version installieren: `sudo apt-get install libapr1=1.4.6\*`.
