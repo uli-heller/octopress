@@ -261,3 +261,17 @@ Hinterkopf behalten.
 
 Ein Nachtest ergibt: Keine Besserung, `git-svn` stürzt noch immer ab.
 Also: Wieder die alte Version installieren: `sudo apt-get install libapr1=1.4.6\*`.
+
+### Neueste Version von aprutil-1.5.2
+
+Auf [LinuxFromScratch](http://www.linuxfromscratch.org/blfs/view/svn/general/subversion.html) gibt es einen Hinweis zur Verwendung der neuesten Version von aprutil.
+
+* Alt:  1.3.12+dfsg-3
+* Neu:  1.5.2-1
+
+Paket erzeugt und installiert gefolgt vom Nachtest ergibt: Keine Besserung.
+Also: Wieder die alte Version installieren: `sudo apt-get install libaprutil1=1.3.12*`
+
+## Änderungen
+
+* 2013-08-15: Test mit aprutil-1.5.2
