@@ -114,3 +114,9 @@ mini_magick:
       commands:
         - thumbnail: "64x48^"
         - crop: "64x48-0x0"
+    centos59_thumbnail:
+      source: images/galleries/centos59
+      destination: images/galleries/centos59/thumbs
+      commands:
+        - thumbnail: "64x48^"
+        - crop: "64x48-0x0"
