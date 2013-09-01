@@ -4,13 +4,14 @@ author: Uli Heller
 published: true
 title: "Git-Svn: Absturz bei 'dcommit'"
 date: 2013-08-08 08:00
-#updated: 2013-07-12 07:00
+updated: 2013-09-01 15:00
 comments: true
 categories:
 - Linux
 - Ubuntu
 - Precise
 - Subversion
+- Git
 ---
 
 Seit der Aktualisierung auf Subversion-1.8.1 gibt es immer wieder
@@ -272,6 +273,54 @@ Auf [LinuxFromScratch](http://www.linuxfromscratch.org/blfs/view/svn/general/sub
 Paket erzeugt und installiert gefolgt vom Nachtest ergibt: Keine Besserung.
 Also: Wieder die alte Version installieren: `sudo apt-get install libaprutil1=1.3.12*`
 
+### Test mit Subversion-1.8.3
+
+Wenn statt Subversion-1.8.1 die Version 1.8.3 verwendet wird, so tritt das Problem nach wie vor auf!
+Die Version 1.8.3 bringt also keine Verbesserung.
+
+### Test mit Git-1.8.4
+
+Wenn statt Git-1.8.3 die Version 1.8.4 verwendet wird, so tritt das Problem nach wie vor auf!
+Die Version 1.8.4 bringt also keine Verbesserung.
+
+### Anpassungen an /usr/share/perl5/Git/SVN/Ra.pm
+
+Unter diesem Link <http://git.661346.n2.nabble.com/git-svn-fetch-segfault-on-exit-td7592205.html>
+gibt es einen Korrekturvorschlag:
+
+{% codeblock Apassungen an ./usr/share/perl5/Git/SVN/Ra.pm lang:diff %}
+--- /usr/share/perl5/Git/SVN/Ra.pm~	2013-07-22 20:59:55.000000000 +0200
++++ /usr/share/perl5/Git/SVN/Ra.pm	2013-09-01 14:53:58.353718366 +0200
+@@ -108,7 +108,7 @@
+ 	                      config => $config,
+ 			      pool => SVN::Pool->new,
+ 	                      auth_provider_callbacks => $callbacks);
+-	$RA = bless $self, $class;
++	$self = bless $self, $class;
+ 
+ 	# Make sure its canonicalized
+ 	$self->url($url);
+@@ -118,7 +118,7 @@
+ 	$self->{cache} = { check_path => { r => 0, data => {} },
+ 	                   get_dir => { r => 0, data => {} } };
+ 
+-	return $RA;
++	return $self;
+ }
+ 
+ sub url {
+{% endcodeblock %}
+
+Mit diesen Änderungen tritt der Fehler nicht mehr auf.
+
+## Korrektur
+
+Mit meinen neuesten Paketen tritt das Problem nicht mehr auf:
+
+* subversion-1.8.3 (... oder neuer)
+* git-1.8.4-0dp09 (... oder neuer)
+
 ## Änderungen
 
 * 2013-08-15: Test mit aprutil-1.5.2
+* 2013-09-01: Subversion-1.8.3, Git-1.8.4, Anpassungen an /usr/share/perl5/Git/SVN/Ra.pm, Korrektur
