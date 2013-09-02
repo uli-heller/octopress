@@ -2,9 +2,9 @@
 layout: post
 author: Uli Heller
 published: true
-title: "Git-Svn: Absturz bei 'dcommit'"
+title: "Git-Svn: Absturz bei 'dcommit', 'rebase', ..."
 date: 2013-08-08 08:00
-updated: 2013-09-01 15:00
+updated: 2013-09-02 09:00
 comments: true
 categories:
 - Linux
@@ -288,7 +288,7 @@ Die Version 1.8.4 bringt also keine Verbesserung.
 Unter diesem Link <http://git.661346.n2.nabble.com/git-svn-fetch-segfault-on-exit-td7592205.html>
 gibt es einen Korrekturvorschlag:
 
-{% codeblock Apassungen an ./usr/share/perl5/Git/SVN/Ra.pm lang:diff %}
+{% codeblock Anpassungen an ./usr/share/perl5/Git/SVN/Ra.pm lang:diff %}
 --- /usr/share/perl5/Git/SVN/Ra.pm~	2013-07-22 20:59:55.000000000 +0200
 +++ /usr/share/perl5/Git/SVN/Ra.pm	2013-09-01 14:53:58.353718366 +0200
 @@ -108,7 +108,7 @@
@@ -311,14 +311,42 @@ gibt es einen Korrekturvorschlag:
  sub url {
 {% endcodeblock %}
 
-Mit diesen Änderungen tritt der Fehler nicht mehr auf.
+Mit diesen Änderungen tritt der Fehler nicht mehr auf. Sie deaktivieren
+die Verwendung der lokalen Variablen `$RA`, diese bleibt damit immer auf dem
+Wert `undef`.
+
+### Korrektur von /usr/share/perl5/Git/SVN/Ra.pm
+
+Nähere Analysen ergeben, dass der Destruktor von `$RA` nicht aufgerufen
+wird. Dadurch gibt es dann einen Absturz bei `apr_terminate()`. Mit
+nachfolgender Änderung wird der Destruktor aufgerufen, bevor
+`apr_terminate()` ausgeführt wird.
+
+{% codeblock Korrektur von ./usr/share/perl5/Git/SVN/Ra.pm lang:diff %}
+--- git-1.8.4.orig/perl/Git/SVN/Ra.pm   2013-09-01 14:30:23.629989557 +0000
++++ git-1.8.4/perl/Git/SVN/Ra.pm        2013-09-02 06:55:19.666260617 +0000
+@@ -32,6 +32,10 @@
+        }
+ }
+ 
++END {
++  $RA = undef;
++}
++
+ sub _auth_providers () {
+        my @rv = (
+          SVN::Client::get_simple_provider(),
+{% endcodeblock %}
+
+Die oben aufgeführte Korrektur habe ich auch an die Git-Mailing-Liste
+geschickt.
 
 ## Korrektur
 
 Mit meinen neuesten Paketen tritt das Problem nicht mehr auf:
 
 * subversion-1.8.3 (... oder neuer)
-* git-1.8.4-0dp09 (... oder neuer)
+* git-1.8.4-0dp10 (... oder neuer)
 
 ## Änderungen
 
