@@ -11,9 +11,9 @@ module ImageList
     dir = Dir.new( File.join(BASE_DIR, name) )
     dir.sort.each do | d |
       image = File.basename(d, File.extname(d))
-      unless d =~ /^\./ || d =~ /thumbs/
+      unless d =~ /^\./ || d =~ /thumbs/ || d =~ /scaled/ || d =~ /_md5/
 #        list << %Q{<a href="/images/galleries/#{name}/#{d}" rel="shadowbox" title="#{image}"><img src="/images/galleries/#{name}/thumbs/#{d}" /></a>}
-        list << %Q{<a href="/images/galleries/#{name}/#{d}"><img src="/images/galleries/#{name}/thumbs/#{d}"/></a>}
+        list << %Q{<a href="/images/galleries/#{name}/scaled/#{d}"><img src="/images/galleries/#{name}/thumbs/#{d}"/></a>}
       end
     end
     list << %Q{</div> <!--class="fotorama" data-nav="thumbs" -->}
