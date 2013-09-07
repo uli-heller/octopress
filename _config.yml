@@ -100,23 +100,3 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
-
-mini_magick:
-    test_thumbnail:
-      source: images/galleries/test
-      destination: images/galleries/test/thumbs
-      commands:
-        - thumbnail: "64x48^"
-        - crop: "64x48-0x0"
-    centos_thumbnail:
-      source: images/galleries/centos
-      destination: images/galleries/centos/thumbs
-      commands:
-        - thumbnail: "64x48^"
-        - crop: "64x48-0x0"
-    centos59_thumbnail:
-      source: images/galleries/centos59
-      destination: images/galleries/centos59/thumbs
-      commands:
-        - thumbnail: "64x48^"
-        - crop: "64x48-0x0"
