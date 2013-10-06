@@ -96,7 +96,7 @@ rake install
 
 ##### Autor und Titel
 
-{% codeblock Autor und Tutel - _config.yml lang:diff %}
+{% codeblock Autor und Titel - _config.yml lang:diff %}
 @@ -2,10 +2,10 @@
  #      Main Configs       #
  # ----------------------- #
