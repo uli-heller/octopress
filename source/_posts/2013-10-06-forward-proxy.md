@@ -8,6 +8,8 @@ external-url:
 categories: 
 - Linux
 - Ubuntu
+- Java
+- Gradle
 - Proxy
 ---
 
