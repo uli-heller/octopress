@@ -43,7 +43,7 @@ Danach:
 * Oracle JDK für Windows x86 herunterladen von <http://oracle.com>
 * Heruntergeladene Datei in LXC-Container hineinkopieren
 * Kopierte Datei im LXC-Container ausführen mittels Wine<pre>
-  wine ./jdk.exe</pre>
+  wine ./jdk-7u40-windows-i586.exe</pre>
 * Es erscheinen diverse Fehlermeldungen -> ignorieren!
 * Ordner ~/.wine/drive_c/Program Files/java verpacken (bspw. mit `zip`)
 * Verpackten Ordner auf USB-Stick speichern
