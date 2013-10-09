@@ -22,13 +22,12 @@ er das Profil nicht mehr.
 
 ## Truecrypt
 
-Ich verwende Thunderbird zusammen mit Truecrypt. Ich habe eine USB-Stick,
-auf dem eine Truecrypt-Partition liegt von der dann Thunderbird gestartet
-wird.
+Ich verwende Thunderbird zusammen mit Truecrypt. Ich habe eine USB-Stick.
+Auf dem liegt eine Truecrypt-Partition. Von dieser wird Thunderbird gestartet.
 
-Erstes Problem: Die Partition wird im "Nur-Lesen"-Modus eingebunden!
+### Die Partition wird im "Nur-Lesen"-Modus eingebunden!
 
-{% codeblock Einträge in ./var/log/syslog %}
+{% codeblock Auszug aus ./var/log/syslog %}
 Oct  8 08:13:22 uli-hp-ssd kernel: [49292.410648] sd 7:0:0:0: [sdh] Attached SCSI disk
 Oct  8 08:13:22 uli-hp-ssd kernel: [49292.754705] FAT-fs (sdh1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
 Oct  8 08:13:22 uli-hp-ssd ntfs-3g[9249]: Version 2012.1.15AR.1 external FUSE 28
@@ -41,15 +40,22 @@ Oct  8 08:14:00 uli-hp-ssd kernel: [49331.213542] FAT-fs (dm-8): error, fat_free
 Oct  8 08:14:00 uli-hp-ssd kernel: [49331.213550] FAT-fs (dm-8): Filesystem has been set read-only
 {% endcodeblock %}
 
+### Freigeben der Truecrypt-Partition
 
-{% codeblock %}
+Zunächst muß die Truecrypt-Partition ausgehängt werden, damit sie für
+Korrekturen frei ist.
+
+{% codeblock Truecrypt-Partition freigeben %}
 sudo -s
 umount /media/truecrypt1
 {% endcodeblock %}
 
-Erster Versuch: Ausführung von fsck.vfat
+### Fsck ohne Zusatzoptionen
 
-{% codeblock %}
+Erster Versuch: Ausführung von fsck.vfat. Leider kein Erfolg,
+das Dateisystem wird nicht korrigiert!
+
+{% codeblock fsck ohne Zusatzoptionen %}
 # fsck.vfat /dev/mapper/truecrypt1
 dosfsck 3.0.12, 29 Oct 2011, FAT32, LFN
 There are differences between boot sector and its backup.
@@ -75,7 +81,12 @@ Leaving file system unchanged.
 /dev/mapper/truecrypt1: 4473 files, 1245896/2436635 clusters
 {% endcodeblock %}
 
-{% codeblock %}
+### Fsck mit Option '-a'
+
+Mit der Option '-a' sollte es eigentlich klappen. Leider gibt's am
+Ende die Fehlermeldung "Unable to create unique name".
+
+{% codeblock fsck mit Option -a %}
 root@uli-hp-ssd:/var/log# fsck.vfat -y /dev/mapper/truecrypt1 
 dosfsck 3.0.12, 29 Oct 2011, FAT32, LFN
 There are differences between boot sector and its backup.
@@ -92,7 +103,14 @@ Differences: (offset:original/backup)
 Unable to create unique name
 {% endcodeblock %}
 
-{% codeblock %}
+### Mehrfache Ausführung mit Option '-r'
+
+Als nächstes führe ich fsck.vfat mehrfach mit der Option '-r' aus.
+Bis auf die Sache mit dem Boot Sector bestätige ich einfach jede Änderung.
+Auffällig: Beim zweiten Durchlauf werden neue Fehler gefunden und korrigiert.
+Erst beim dritten Durchlauf gibt es keinen Fehler mehr.
+
+{% codeblock Erster Versuch %}
 root@uli-hp-ssd:/var/log# fsck.vfat -r /dev/mapper/truecrypt1 
 dosfsck 3.0.12, 29 Oct 2011, FAT32, LFN
 There are differences between boot sector and its backup.
@@ -119,7 +137,7 @@ Perform changes ? (y/n) y
 /dev/mapper/truecrypt1: 4473 files, 1245896/2436635 clusters
 {% endcodeblock %}
 
-{% codeblock %}
+{% codeblock Zweiter Versuch %}
 root@uli-hp-ssd:/var/log# fsck.vfat -r /dev/mapper/truecrypt1 
 dosfsck 3.0.12, 29 Oct 2011, FAT32, LFN
 There are differences between boot sector and its backup.
@@ -134,7 +152,7 @@ Perform changes ? (y/n) y
 /dev/mapper/truecrypt1: 4473 files, 1245896/2436635 clusters
 {% endcodeblock %}
 
-{% codeblock %}
+{% codeblock Dritter Versuch %}
 root@uli-hp-ssd:/var/log# fsck.vfat -r /dev/mapper/truecrypt1 
 dosfsck 3.0.12, 29 Oct 2011, FAT32, LFN
 There are differences between boot sector and its backup.
@@ -147,7 +165,11 @@ Differences: (offset:original/backup)
 /dev/mapper/truecrypt1: 4473 files, 1245896/2436635 clusters
 {% endcodeblock %}
 
-{% codeblock %}
+### Nochmals: Fsck mit Option '-a'
+
+Schlußtest nochmal mit der Option '-a': Kein Fehler mehr vorhanden!
+
+{% codeblock Nochmals fsck mit '-a'  %}
 root@uli-hp-ssd:/var/log# fsck.vfat -a /dev/mapper/truecrypt1 
 dosfsck 3.0.12, 29 Oct 2011, FAT32, LFN
 There are differences between boot sector and its backup.
@@ -157,13 +179,36 @@ Differences: (offset:original/backup)
 /dev/mapper/truecrypt1: 4473 files, 1245896/2436635 clusters
 {% endcodeblock %}
 
-{% codeblock %}
+### Truecrypt-Partition wieder einbinden
+
+{% codeblock Truecrypt-Partition einbinden %}
 mount /dev/mapper/truecrypt1 /media/truecrypt1/
 {% endcodeblock %}
 
+... klappt nun im Schreiblese-Modus!
 
-Thunderbird
+## Thunderbird
 
-Adressbuch -> OK
-prefs.js -> klein
-Sicherungskopie: prefs-1.js
+Nach den Korrekturen an der Truecrypt-Partition startet Thunderbird
+leider nicht mehr richtig: Ich werde aufgefordert, ein neues Konto
+anzulegen.
+
+### Sichtung des Adressbuchs
+
+Wenn ich mir direkt das Adressbuch anzeigen lasse, dann sehe ich dort noch
+meine Einträge - gut!
+
+### Sichtung der Datei "prefs.js"
+
+In meinem Profilverzeichnis /media/truecrypt1/thunderbird-uli
+gibt es eine Datei "prefs.js". Diese sieht allerdings sehr klein aus.
+Sie hat nur eine Größe von grob 3KB.
+
+Ich finde noch eine Datei "prefs-1.js" vom Vortag, die hat eine
+Größe von grob 60 KB.
+
+### Restaurieren der Datei "prefs.js"
+
+* Thunderbird stoppen
+* `cp prefs-1.js prefs.js`
+* Thunderbird starten -> klappt, sieht wieder "normal" aus
