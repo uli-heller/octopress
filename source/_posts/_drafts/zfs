@@ -1,0 +1,6 @@
+sudo apt-get install nfs-kernel-server samba
+sudo zfs set sharesmb=on tank/music
+sudo zfs set sharesmb=on tank/videos
+sudo zfs set sharenfs=on tank/backups
+
+http://www.latentexistence.me.uk/zfs-and-ubuntu-home-server-howto/
