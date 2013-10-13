@@ -4,7 +4,7 @@ author: Uli Heller
 published: true
 title: "Persönliche Git-Zentrale"
 date: 2013-10-09 11:00
-# updated: 2013-07-20 08:00
+updated: 2013-10-13 11:30
 comments: true
 categories:
 - Linux
@@ -49,10 +49,11 @@ done
 {% codeblock %}
 cd git
 for p in base test server; do \
-(
-  cd $p
-  git remote add fileserver bert@fileserver:git/base.git
-)
+(                             \
+  cd $p;                      \
+  git remote add fileserver bert@fileserver:git/base.git; \
+);                            \
+done
 {% endcodeblock %}
 
 ### Git-Repositories auf Fileserver übertragen
@@ -66,3 +67,9 @@ for p in base test server; do \
 );                            \
 done
 {% endcodeblock %}
+
+## Änderungen
+
+### 2013-10-13
+
+* Tippfehler korrigiert
