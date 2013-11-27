@@ -98,6 +98,46 @@ Muffin
       muffin-common_2.0.5dp01precise~1_all.deb 
 </pre>
 
+Cinnamon Session
+----------------
+
+* Paket: cinnamon-session-2.0.6.tar.gz
+* Zusatzpakete installieren:<pre>
+  sudo apt-get install \
+    libupower-glib-dev \
+    libxtst-dev
+</pre>
+* Weiter analog zum Standard-Ablauf
+
+Cinnamon Settings Daemon
+------------------------
+
+* Paket: cinnamon-settings-daemon-2.0.8.tar.gz
+* Zusatzpakete installieren:<pre>
+  sudo apt-get install \
+    libxklavier-dev    \
+    libnss3-dev        \
+    libcolord-dev      \
+    libnotify-dev      \
+    libwacom-dev       \
+    libgnomekbd-dev    \
+    xserver-xorg-input-wacom
+</pre>
+* Weiter analog zum Standard-Ablauf
+
+Cinnamon Translations
+---------------------
+
+* Paket: cinnamon-translations-2.0.3.tar.gz
+
+Nemo
+----
+
+* Paket: nemo-2.0.8.tar.gz
+* Zusatzpakete installieren:<pre>
+  sudo apt-get install libgail-3-dev libexempi-dev
+</pre>
+
 Cinnamon
 --------
 
