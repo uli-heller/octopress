@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Cinnamon-2.0.14 und Muffin-2.0.5 für Ubuntu-12.04 bauen"
+published: false
 date: 2013-11-27 08:00
 comments: true
 external-url: 
