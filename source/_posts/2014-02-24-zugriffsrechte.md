@@ -100,5 +100,30 @@ der Tomcat nur Lesezugriff und keinen Schreibzugriff.
 
 ### Neuer Ansatz mit ACL
 
+Mit ACLs kann man die Sache zuverlässiger in den Griff bekommen,
+die Rechte hängen dann nicht mehr von der UMASK ab.
+
+* Zunächst: ACL für das Arbeitsverzeichnis festlegen:
+    * Benutzer der Gruppe "staff": rwx auf alles:
+        * `setfacl -m g:staff:rwx /data/dupl`
+    * Benutzer der Gruppe "tomcat-dupl": rwx auf alles
+        * `setfacl -m g:tomcat-dupl:rwx /data/dupl`
+    * Die beiden vorgenannten Rechte sollen per Standard auch
+      für alle darin angelegten Verzeichnisse und Dateien gelten:
+        * `setfacl -d -m g:staff:rwx /data/dupl`
+        * `setfacl -d -m g:tomcat-dupl:rwx /data/dupl`
+* Dann: Test, ob das alles so funktioniert
+    * Tomcat: Datei und Verzeichnis innerhalb von /data/dupl anlegen,
+      modifizieren, löschen -> klappt
+    * Benutzer der Gruppe "staff": Datei und Verzeichnis innerhalb
+      von /data/dupl anlegen, modifizieren, löschen -> klappt
+    * Tomcat: Verzeichnis anlegen, "staff": Datei darin anlegen,
+      Tomcat: Datei modifizieren -> klappt
+* Zuletzt: Rechte auf das gesamte Arbeitsverzeichnis anwenden:
+    * `setfacl -R -m g:staff:rwx /data/dupl`
+    * `setfacl -R -m g:tomcat-dupl:rwx /data/dupl`
+    * `setfacl -R -d -m g:staff:rwx /data/dupl`
+    * `setfacl -R -d -m g:tomcat-dupl:rwx /data/dupl`
+
 ...
 
