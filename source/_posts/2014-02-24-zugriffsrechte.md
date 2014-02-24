@@ -98,6 +98,14 @@ UMASK-Eintrag nicht richtig gesetzt habe. Wenn ich bspw. um `umask 022`
 in /data/dup neue Dateien oder Verzeichnisse anlege, dann hat
 der Tomcat nur Lesezugriff und keinen Schreibzugriff.
 
+Um die Auswirkungen von solchen Aktionen in Grenzen zu halten gibt es
+einen regelmässig ausgeführten CRONJOB, der für alle Dateien und Verzeichnisse
+die Schreibrechte für die Gruppe setzt, also etwas wie:
+
+```
+find /data/dupl -print0|xargs -0 chmod g+w
+```
+
 ### Neuer Ansatz mit ACL
 
 Mit ACLs kann man die Sache zuverlässiger in den Griff bekommen,
