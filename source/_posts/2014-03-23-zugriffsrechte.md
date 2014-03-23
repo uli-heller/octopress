@@ -3,7 +3,7 @@ layout: post
 author: Uli Heller
 published: true
 title: "Linux - Zugriffsrechte mit ACL"
-date: 2014-02-23 08:00
+date: 2014-03-23 08:00
 #updated: 2014-02-15 07:00
 comments: true
 categories: 
@@ -133,5 +133,16 @@ die Rechte hängen dann nicht mehr von der UMASK ab.
     * `setfacl -R -d -m g:staff:rwx /data/dupl`
     * `setfacl -R -d -m g:tomcat-dupl:rwx /data/dupl`
 
-...
+Datenbank-Traces
+----------------
 
+Die Traces von Oracle 11G werden abgelegt unter /app/oracle/admin/oradba/udump.
+Per Standard habe ich keinen Lesezugriff auf die Traces. Eine einmalige Ausführung
+von `chmod o+r ...` bringt nichts, weil Oracle 11G dort immer wieder neue Dateien
+erzeugt, deren Zugriffsrechte ebenfalls geändert werden müssen.
+
+Auch hier kann man mit ACLs für die Lösung sorgen:
+
+* `setfacl -R -m g:staff:r /app/oracle/admin/oradba/udump`
+* `setfacl -m g:staff:rx /app/oracle/admin/oradba/udump`
+* `setfacl -R -d -m g:staff:r /app/oracle/admin/oradba/udump`

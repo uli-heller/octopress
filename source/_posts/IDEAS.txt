@@ -36,6 +36,8 @@ Git
 * http://code.joejag.com/2013/everyday-git-aliases/
 * Deploy via GIT
   * https://coderwall.com/p/xczkaq?&p=1&q=
+* https://github.com/onlywei/explain-git-with-d3
+
 
 SublimeText3
 ------------
@@ -114,3 +116,7 @@ WINDOWS
   http://www.9bis.net/kitty/?page=Welcome&zone=en
 * http://www.mremoteng.org/
 * http://www.ericvb.com/archives/the-best-tabbed-ssh-solution-in-windows-7
+
+DOCKER
+------
+* http://www.centurylinklabs.com/15-quick-docker-tips/
