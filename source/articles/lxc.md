@@ -174,6 +174,20 @@ Acquire::http::Proxy "http://10.0.3.1:3142";
 sudo apt-get install joe
 ```
 
+## Container-Kopien
+
+### Erzeugen
+
+```
+sudo lxc-clone -o ubuntu1404-64 -n ubuntu1404-64-build -s
+```
+
+### Löschen
+
+```
+sudo lxc-destroy --name ubuntu1404-64-build
+```
+
 ## Sichern und Rückspielen von Containern
 
 ### Sichern
