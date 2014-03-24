@@ -4,7 +4,7 @@ author: Uli Heller
 published: true
 title: "LXC"
 date: 2014-02-14 07:00
-#updated: 2013-06-09 14:00
+updated: 2014-03-24 10:00
 comments: true
 categories: 
 - Linux
