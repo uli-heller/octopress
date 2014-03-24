@@ -8,7 +8,7 @@ comments: true
 categories:
 - Linux
 - Ubuntu
-- LXC
+- Lxc
 ---
 
 In letzter Zeit tritt ein Problem beim Ausführen
