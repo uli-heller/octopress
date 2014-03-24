@@ -155,8 +155,8 @@ sudo lxc-create -t ubuntu -n ubuntu1204-32 -- -r lucid -a i386
     * Kennwort: "ubuntu"
 * Netzwerk
     * IP-Adressen: Aus dem Adressbereich 10.0.3/24
-    * NAT: Funktioniert - @ping google.com@
-    * SSH vom Host in den Container: Funktioniert - @ssh ubuntu@10.0.3.250@
+    * NAT: Funktioniert - `ping google.com`
+    * SSH vom Host in den Container: Funktioniert - `ssh ubuntu@10.0.3.250`
 
 ## Anpassung der Container
 
