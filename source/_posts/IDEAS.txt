@@ -23,6 +23,9 @@
 
 # Sonstiges
 
+* https://alexcabal.com/creating-the-perfect-gpg-keypair/
+
+
 NginX - Apache
 --------------
 * http://unhandledexpression.com/2013/01/25/5-easy-tips-to-accelerate-ssl/
