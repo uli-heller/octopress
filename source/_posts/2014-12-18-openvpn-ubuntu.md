@@ -68,4 +68,6 @@ OpenVPN starten
 $ sudo openvpn ~/openvpn/uheller.ovpn
 Enter Auth Username: uheller
 Enter Auth Password: xxxx
+...
+$ sudo route add  -net 10.157.0.0 netmask 255.255.0.0 gw 10.157.110.217
 {% endcodeblock %}
