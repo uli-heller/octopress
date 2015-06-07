@@ -107,6 +107,11 @@ WEBAPPS
 * Sequenz-Diagramme in JavaScript (hübsch)
   * http://bramp.github.io/js-sequence-diagrams/
 
+SPRING
+------
+* http://therore.net/injecting-mockito-mocks-into-the-spring-context/
+    * https://github.com/alfredodiaz/therore-spring-mockito
+
 CHROME
 ------
 * http://dev.hubspot.com/blog/bulletproof-demos
