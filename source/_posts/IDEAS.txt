@@ -108,6 +108,8 @@ WEBAPPS
   * http://bramp.github.io/js-sequence-diagrams/
 * Integrationstests mit Gradle
   * http://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/
+* Do Not Make This Mistake When Developing an SPI
+  * http://blog.jooq.org/2015/05/21/do-not-make-this-mistake-when-developing-an-spi/
 
 SPRING
 ------
