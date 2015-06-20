@@ -106,6 +106,8 @@ WEBAPPS
   * http://undertow.io/blog/2013/07/09/Undertow-Beta1-Released.html
 * Sequenz-Diagramme in JavaScript (hübsch)
   * http://bramp.github.io/js-sequence-diagrams/
+* Integrationstests mit Gradle
+  * http://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-integration-testing/
 
 SPRING
 ------
